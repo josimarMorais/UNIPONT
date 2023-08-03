@@ -1,0 +1,305 @@
+/*1483FF ABD3FF 7BB9FF 00438E 00346D*/
+
+/*Estilizações padrões*/
+html, body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+    background-color:#00346D;
+    margin: 0;
+    min-height: 100%;
+}
+
+h3 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+.centralizar{
+    text-align: center;
+}
+
+.recuo {
+    padding-left: 50px;
+}
+
+.teste {
+    border: 5px solid #fff;
+    border-radius: 5px;
+}
+
+/* Estilização dos fomulários*/
+.main-form {
+    padding: 20px 5px 5px 5px ;
+    background-color: #eee;
+    color: #00346D;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 16px;
+    width: 70%;
+    margin: 10px auto;
+    box-shadow: 10px 10px 30px #111;
+}
+
+.form-group {
+    padding-bottom: 5px;
+    margin: 5px;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group input {
+    font-size: 16px;
+    color: #00438E;
+    margin: 5px 0px;
+    padding: 5px 0px;
+    width: 100%;
+}
+
+.form-group textarea {
+    font-size: 16px;
+    color:#00438E;
+    margin: 5px 0px;
+    padding: 5px 0px;
+    width: 100%;
+}
+
+.button {
+    width: 20%;
+    margin: auto;
+    
+    }
+
+.button input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px #444;
+    background-color: #00346D;
+    color: #fff;
+}
+
+.button input:hover {
+    background-color:#00438E;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* Estilização do menu*/
+.menu {
+    position: fixed;
+    background-color: #00438E;
+    padding: 12px;
+    border-radius: 15px 0px;
+    right: 1vi;
+    top: 1vh;
+    z-index: 10;
+}
+
+.menu a {
+    padding: 5px 15px;
+    font-size: 16x;
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu a:hover{
+    color: #ccc;
+}
+
+
+
+/*Estilizações das partes da página*/
+.conteudo-home {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.conteudo-home h1 {
+    margin: 0;
+    font-size: 9em;
+    font-weight: bolder;
+}
+
+.uni {
+    color:#00346D;
+    text-shadow: 5px 5px #fff;
+}
+
+.pon {
+    text-shadow: 5px 5px #00346D;
+}
+
+.nome-facul {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    padding-left: 14px;
+    letter-spacing: 14px;
+    text-shadow: 3px 3px #00346D;
+}
+
+.conteudo-home address {
+    padding-top: 10px;
+    font-size: 18px;
+    letter-spacing: 7px;
+}
+
+.conteudo-home .sessao-imagens{
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    top: 40%;
+}
+
+.conteudo-home .home-imagens img {
+    width: 250px;
+    height: 180px;
+    border: 5px;
+    border-radius: 10px;
+    border-style: groove;
+}
+
+
+.conteudo {
+    color: #fff;
+    background-color: #00346D;
+    margin: 0;
+    text-align: justify;
+    padding: 50px 80px;
+}
+
+.sessao-noticias {
+    position: absolute;
+    top: 2%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.sessao-noticias h1 {
+    font-size: 3em;
+    text-shadow: 4px 3px #00346D;
+}
+
+.noticias {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.conteudo-noticias {
+    justify-content: space-around;
+    margin: 30px;
+    height: 55vh;
+    width: 35vw;
+    background-color: #00346D;
+}
+
+.conteudo-noticias img {
+    width: 25vw;
+}
+
+.conteudo-noticias .texto {
+    padding-left: 5%;
+    width: 90%;
+    text-align: justify;
+}
+
+.sessao-fale {
+    position: absolute;
+    top: 3%;
+    width: 100%;
+    height: 100%;
+
+}
+
+.sessao-fale h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+.conteudo-fale{
+    padding: 40px 50px;
+    background-color: #00346D; 
+}
+
+.sessao-login {
+    position: absolute;
+    background-color:#00346D;
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.success {
+    background-color: #48a00d;
+}
+
+@keyframes animacao-error {
+    from {
+        background: #000000;
+        border-radius: 0px;
+        top: -5vh;
+        left: 30vw;
+    }
+    to {
+        background: #b30000;
+        border-radius: 20px;
+        top: 3vh;
+        left: 40%;
+        z-index: 10;
+    }
+}
+
+.error {
+    position: relative;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 1px 1px 1px #00346D;
+    box-shadow: 3px 3px 3px #000;
+    width: 20%;
+    animation: animacao-error 0.4s forwards;
+}
+
+/*Efeito Parallax*/
+.caixa1, .caixa2, .caixa3, .caixa4 {
+    position: relative;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.caixa1 {
+    background-image: url(../imagens/fundo-azul.jpg);
+}
+
+.caixa2{
+    background-image: url(../imagens/noticia2.jpg);
+}
+
+.caixa3{
+    background-image: url(../imagens/faleconosco.jpg);
+}
+
+.caixa4{
+    background-image: url(../imagens/fundo-azul.jpg);
+}

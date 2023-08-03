@@ -1,0 +1,35 @@
+ <div class="caixa4" id="comentarios">
+        <div class="sessao-fale">
+            <h1>Comentários</h1>
+            <div class="conteudo-fale">
+                <form action="/novocomentario" name="myForm" class="main-form" method="POST">
+                    <fieldset>
+                        <legend>Deixe um comentário</legend>
+            
+                        <div class="form-group">
+                            <label for="nome">Nome: </label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem: </label>
+                            <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea>
+                        </div>
+                        <div class="button">
+                            <input  type="submit" value="Enviar">
+                        </div>
+                    </fieldset>
+                </form>
+                <br>
+                <hr class="teste">
+                {{#each comentarios}}
+                <div class="recuo">
+                    <h4>Nome: {{nome}}</h4>
+                    <p> Mesagem: {{mensagem}}</p>
+                </div>
+                <hr>
+                {{else}}
+                    <h4 class="centralizar">Não tem nenhum comentário ainda</h4>
+                {{/each}}
+            </div>
+        </div>
+    </div>
