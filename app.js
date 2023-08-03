@@ -6,9 +6,13 @@
     const admin      = require('./routes/admin')
     const session    = require("express-session")
     const flash      = require("connect-flash")
-
+    
     const app        = express();
     const port       = 3000;
+    
+    //Configurações e importações de Módulos referente ao banco de dados
+    require('./database');
+    const ComentarioController = require('./controllers/ComentarioController')
 
 
 //Configurações dos módulos
@@ -44,7 +48,8 @@
         }))
         app.set('view engine', 'handlebars')
 
-
+    //Express json
+        app.use(express.json())
 
 
 
@@ -84,6 +89,8 @@
         console.log("Mensagem: " + req.body.mensagem)
         res.redirect('home')
     })
+
+    app.post('/testecomentario', ComentarioController.store)
 
     app.post('/novocomentario', (req, res) => {
         var comentario = {
