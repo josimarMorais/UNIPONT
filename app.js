@@ -74,9 +74,9 @@
         res.render('fale')
     })
 
-    app.get('/comentarios', (req, res) => {
-        res.render('comentarios', {comentarios : comentarios})
-    })
+    app.get('/comentarios', ComentarioController.index)
+
+    app.post('/novocomentario', ComentarioController.store)
 
     app.get('/login', (req, res) => {
         res.render('login')
@@ -90,16 +90,9 @@
         res.redirect('home')
     })
 
-    app.post('/testecomentario', ComentarioController.store)
+    
 
-    app.post('/novocomentario', (req, res) => {
-        var comentario = {
-            "nome": req.body.nome,
-            "mensagem" :  req.body.mensagem
-        }
-        comentarios.push(comentario)
-        res.render('comentarios', {comentarios : comentarios})
-    })
+  
 
     app.post('/login', (req, res) => {
         if(req.body.email == "adm" && req.body.senha == 123){
