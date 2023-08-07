@@ -247,7 +247,44 @@ p {
 }
 
 .success {
-    background-color: #48a00d;
+    position: relative;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 1px 1px 1px #00346D;
+    box-shadow: 3px 3px 3px #000;
+    width: 20%;
+    animation: animacao-success 0.4s forwards;
+}
+
+@keyframes animacao-success {
+    from {
+        background: #000000;
+        border-radius: 0px;
+        top: -5vh;
+        left: 30vw;
+    }
+    to {
+        background: #1eb300;
+        border-radius: 20px;
+        top: 3vh;
+        left: 40%;
+        z-index: 10;
+    }
+}
+
+
+.success {
+    position: relative;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 1px 1px 1px #00346D;
+    box-shadow: 3px 3px 3px #000;
+    width: 20%;
+    animation: animacao-success 0.6s forwards;
 }
 
 @keyframes animacao-error {
@@ -264,18 +301,6 @@ p {
         left: 40%;
         z-index: 10;
     }
-}
-
-.error {
-    position: relative;
-    padding: 10px;
-    font-size: 1.5em;
-    font-weight: bolder;
-    text-align: center;
-    text-shadow: 1px 1px 1px #00346D;
-    box-shadow: 3px 3px 3px #000;
-    width: 20%;
-    animation: animacao-error 0.4s forwards;
 }
 
 /*Efeito Parallax*/

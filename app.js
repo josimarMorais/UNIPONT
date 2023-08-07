@@ -6,9 +6,13 @@
     const admin      = require('./routes/admin')
     const session    = require("express-session")
     const flash      = require("connect-flash")
-
+    
     const app        = express();
     const port       = 3000;
+    
+    //Configurações e importações de Módulos referente ao banco de dados
+    require('./database');
+    const ComentarioController = require('./controllers/ComentarioController')
 
 
 //Configurações dos módulos
@@ -44,7 +48,8 @@
         }))
         app.set('view engine', 'handlebars')
 
-
+    //Express json
+        app.use(express.json())
 
 
 
@@ -69,9 +74,9 @@
         res.render('fale')
     })
 
-    app.get('/comentarios', (req, res) => {
-        res.render('comentarios', {comentarios : comentarios})
-    })
+    app.get('/comentarios', ComentarioController.index)
+
+    app.post('/novocomentario', ComentarioController.store)
 
     app.get('/login', (req, res) => {
         res.render('login')
@@ -85,14 +90,9 @@
         res.redirect('home')
     })
 
-    app.post('/novocomentario', (req, res) => {
-        var comentario = {
-            "nome": req.body.nome,
-            "mensagem" :  req.body.mensagem
-        }
-        comentarios.push(comentario)
-        res.render('comentarios', {comentarios : comentarios})
-    })
+    
+
+  
 
     app.post('/login', (req, res) => {
         if(req.body.email == "adm" && req.body.senha == 123){
