@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -9,17 +10,19 @@ body {
     
 }
 
-h2, h4 {
+h1, h2 {
     text-align: center;
 }
 
 /*1483FF ABD3FF 7BB9FF 00438E 00346D*/
 .sessao-adm {
     width: 96%;
+    word-wrap: break-word;
     min-height: 90vh;
     margin: 4vh auto;
     padding: 1%;
     background-color: #7BB9FF;
     color: #00346D;
     border-radius: 30px;
+
 }

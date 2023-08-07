@@ -1,6 +1,9 @@
 const express = require('express')
 const router  = express.Router()
 
+const FaleconoscoController = require('../controllers/FaleconoscoController')
+
+
 router.get('/principal', (req, res) => {
     res.render('principal')
 })
@@ -16,6 +19,12 @@ router.get('/curso', (req, res) => {
 router.get('/materia', (req, res) => {
     res.render('admin/materia', {layout: 'administrador'})
 })
+
+
+router.get('/fale', FaleconoscoController.admindex)
+router.post('/fale/delete', FaleconoscoController.delete)
+
+
 
 
 module.exports = router

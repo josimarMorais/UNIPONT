@@ -1,11 +1,13 @@
 const Sequelize = require('sequelize')
 const dbConfig  = require('../config/database')
 
-const Comentario = require('../models/Comentario')
+const Comentario  = require('../models/Comentario')
+const Faleconosco = require('../models/Faleconosco') 
 
 const  connection = new Sequelize(dbConfig)
 
 Comentario.init(connection)
+Faleconosco.init(connection)
 
 
 //Verificando conexão com o bando de dados

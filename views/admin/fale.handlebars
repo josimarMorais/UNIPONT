@@ -1,0 +1,17 @@
+<div class="sessao-adm">
+<h1>Contatos solicitados</h1>
+{{#each fales}}
+<div class="recuo">
+    <h4>Nome: {{nome}}</h4>
+    <h4>E-mail: {{email}}</h4>
+    <p> Mesagem: {{mensagem}}</p>
+    <form action="/admin/fale/delete" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit"> Deletar Solicitação de contato</button>
+    </form>
+</div>
+<hr>
+{{else}}
+<h4 class="centralizar">Não há nenhum contato solicitado ainda</h4>
+{{/each}}
+</div>
