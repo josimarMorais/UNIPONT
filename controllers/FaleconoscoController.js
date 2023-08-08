@@ -1,7 +1,6 @@
 const Faleconosco = require('../models/Faleconosco')
 
 module.exports = {
-
     async index(req, res) {
         return res.render('fale')
     },
@@ -20,21 +19,15 @@ module.exports = {
 
     async delete(req, res) {
         const { id } = req.body;
-
-        console.log('Número do ID: ' + id)
-        
         const fale = await Faleconosco.findByPk(id)
-
         if(!fale){
             req.flash("error_msg", "Contato não encontrado")
-            return res.redirect('/admin/fale')
+            return res.redirect('/admin/faleadm')
         }else{
-            fale.destroy()
+           await fale.destroy()
             req.flash("success_msg", "Solicitação de contato apagada com sucesso!")
-            return res.redirect('/admin/fale')
+            return res.redirect('/admin/faleadm')
         }
-
-        
     }
 
 }

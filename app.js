@@ -85,7 +85,7 @@
             res.render('admin/principal', {layout: 'administrador'})
         }else {
             req.flash("error_msg", "E-mail ou senha inválidos")
-            res.redirect('login')
+            res.redirect('/login')
         }
     })
 
