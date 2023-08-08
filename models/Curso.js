@@ -9,6 +9,11 @@ class Curso extends Model {
             sequelize, 
         })
     }
+
+    static associate(models) {
+        this.hasMany(models.Aluno, { foreignKey: 'aluno_id', as: 'alunos'})
+    }
+
 }
 
 module.exports = Curso;

@@ -2,8 +2,7 @@ const express = require('express')
 const router  = express.Router()
 
 const FaleconoscoController = require('../controllers/FaleconoscoController')
-const CursoController = require('../controllers/CursoController')
-
+const CursoController       = require('../controllers/CursoController')
 
 router.get('/principal', (req, res) => {
     res.render('principal')
