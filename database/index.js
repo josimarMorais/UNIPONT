@@ -13,7 +13,6 @@ Faleconosco.init(connection)
 Curso.init(connection)
 Aluno.init(connection)
 
-
 Aluno.associate(connection.models)
 Curso.associate(connection.models)
 

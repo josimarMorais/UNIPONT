@@ -70,6 +70,14 @@ p {
     width: 100%;
 }
 
+.form-group select {
+    font-size: 16px;
+    color:#00438E;
+    margin: 5px 0px;
+    padding: 5px 0px;
+    width: 100%;
+}
+
 .button {
     width: 20%;
     margin: auto;

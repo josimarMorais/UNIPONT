@@ -7,15 +7,26 @@ module.exports = {
         
     },
 
+
     async carregarNovo(req, res) {
         res.render('admin/addcurso', {layout: 'administrador'})
     },
 
+    
     async carregarEdicao(req, res) {
         const { id } = req.params;
         const curso = await Curso.findByPk(id)
         return res.render('admin/editarcurso', {curso, layout: 'administrador'})
     },
+
+
+    async store(req, res) {
+        const {nome, periodos} = req.body
+        const cursos = await Curso.create({nome, periodos})
+        req.flash("success_msg", "Curso cadastrado com sucesso!")
+        return res.redirect('/admin/curso')
+    },
+
 
     async update(req, res) {
         const { id, nome, periodos } = req.body;
@@ -27,13 +38,6 @@ module.exports = {
         })
 
         req.flash("success_msg", "Curso alterado com sucesso!")
-        return res.redirect('/admin/curso')
-    },
-
-    async store(req, res) {
-        const {nome, periodos} = req.body
-        const cursos = await Curso.create({nome, periodos})
-        req.flash("success_msg", "Curso cadastrado com sucesso!")
         return res.redirect('/admin/curso')
     },
 

@@ -1,3 +1,20 @@
 <div class="sessao-adm">
-<h1>Aluno</h1>
+    <h1>Lista de Alunos</h1>
+    <a href="/admin/aluno/adicionar"><button class="new">Cadastrar novo aluno</button></a>
+    <hr>
+    {{#each alunos}}
+    <div class="recuo">
+        <h4>Nome: {{nome}}</h4>
+        <p> Matricula: {{matricula}}</p>
+        <p> Telefone: {{telefone}}</p>
+        <p> Curso: {{curso.nome}}</p>
+       <a href="/admin/aluno/editar/{{id}}"><button type="submit" class="new">Editar</button></a>
+       <a href="/admin/aluno/deletar/{{id}}"><button type="submit" class="delete">Apagar</button></a>
+    </div>
+    <hr>
+    {{else}}
+    <h4 class="centralizar">Nenhum aluno cadastrado</h4>
+    {{/each}}
+
+
 </div>

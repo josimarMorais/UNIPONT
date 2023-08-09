@@ -4,15 +4,14 @@ class Aluno extends Model {
     static init(sequelize) {
         super.init({
             nome     : DataTypes.STRING,
-            matricula: DataTypes.INTEGER,
-            telefone : DataTypes.INTEGER
+            matricula: DataTypes.STRING,
+            telefone : DataTypes.STRING
         }, {
             sequelize
         })
     }
-
     static associate(models) {
-        this.belongsTo(models.Curso, { foreignKey: 'aluno_id', as: 'curso'})
+        this.belongsTo(models.Curso, { foreignKey: 'curso_id', as: 'curso'})
     }
 }
 

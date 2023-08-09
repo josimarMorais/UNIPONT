@@ -11,7 +11,7 @@ class Curso extends Model {
     }
 
     static associate(models) {
-        this.hasMany(models.Aluno, { foreignKey: 'aluno_id', as: 'alunos'})
+        this.hasMany(models.Aluno, { foreignKey: 'curso_id', as: 'alunos'})
     }
 
 }
