@@ -5,14 +5,15 @@ const FaleconoscoController = require('../controllers/FaleconoscoController')
 const CursoController       = require('../controllers/CursoController')
 const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
+const MateriaController     = require('../controllers/MateriaController')
 
 router.get('/principal', (req, res) => {
     res.render('principal')
 })
 
-router.get('/materia', (req, res) => {
-    res.render('admin/materia', {layout: 'administrador'})
-})
+//Rotas Materia
+router.get('/materia', MateriaController.index)
+router.get('/materia/adicionar', MateriaController.carregarNovo)
 
 
 //Rotas Aluno
