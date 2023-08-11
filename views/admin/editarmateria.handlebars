@@ -1,0 +1,38 @@
+<div class="sessao-adm">
+
+    <h2>EDITAR DADOS Matéria</h2>
+    <form action="/admin/materia/editar" class="main-form" method="POST">
+    <fieldset>
+        <legend>Editar Matéria</legend>
+        
+        <input type="hidden" name="id" value="{{materia.id}}">
+
+        <div class="form-group">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" value="{{materia.nome}}" required>
+        </div>
+        <div class="form-group">
+            <label for="carga_horaria"> Carga Horária </label>
+            <input type="text" id="carga_horaria" name="carga_horaria" value="{{materia.carga_horaria}}" required>
+        </div>
+        
+        <div>
+            <strong>Cursos já cadastrados:</strong><br>
+            {{#each materiaCursos}}
+                <input type="checkbox" value="{{id}}" name="cursos" checked> <label for="{{nome}}">{{nome}} </label><br>
+            {{else}}
+            {{/each}}
+        </div>
+        <div><br>
+            <strong>Cursos ausentes:</strong><br>
+            {{#each ausentes}}
+                <input type="checkbox" value="{{id}}" name="cursos"> <label for="{{nome}}">{{nome}} </label><br>
+            {{else}}
+            {{/each}}
+        </div><br>
+        <div class="button">
+            <input type="submit" value="Enviar">
+        </div>
+    </fieldset>
+</form>
+</div>

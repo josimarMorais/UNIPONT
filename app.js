@@ -13,6 +13,7 @@
     //Configurações e importações de Módulos referente ao banco de dados
     require('./database');
     const ComentarioController = require('./controllers/ComentarioController')
+    const FaleconoscoController = require('./controllers/FaleconoscoController')
 
 
 //Configurações dos módulos
@@ -55,9 +56,6 @@
 
 
 //ROTAS
-    //Variável para salvar os comentários
-    var comentarios = []
-
     app.get('/', (req, res) => {
         res.render('home', {layout: 'main'});
     });
@@ -70,41 +68,25 @@
         res.render('noticias')
     })
 
-    app.get('/fale', (req, res) => {
-        res.render('fale')
-    })
 
     app.get('/comentarios', ComentarioController.index)
-
     app.post('/novocomentario', ComentarioController.store)
+    
+    app.post('/novocontato', FaleconoscoController.store)
+    app.get('/fale', FaleconoscoController.index)
+
 
     app.get('/login', (req, res) => {
         res.render('login')
     })
-
-    app.post('/novocontato', (req, res) => {
-        console.log("\nNOVA SOLICITAÇÃO DE CONTATO\n")
-        console.log("Nome: " + req.body.nome)
-        console.log("Email: " + req.body.email)
-        console.log("Mensagem: " + req.body.mensagem)
-        res.redirect('home')
-    })
-
     
-
-  
-
     app.post('/login', (req, res) => {
         if(req.body.email == "adm" && req.body.senha == 123){
-            res.redirect('/principal')
+            res.render('admin/principal', {layout: 'administrador'})
         }else {
             req.flash("error_msg", "E-mail ou senha inválidos")
-            res.redirect('login')
+            res.redirect('/login')
         }
-    })
-
-    app.get('/principal', (req, res) => {
-        res.render('admin/principal', {layout: 'administrador'})
     })
 
     //rotas da parte do administrador

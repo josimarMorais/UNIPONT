@@ -1,0 +1,16 @@
+<div class="sessao-adm">
+<h1>Comentários Feitos</h1>
+{{#each comentarios}}
+<div class="recuo">
+    <h4>Nome: {{nome}}</h4>
+    <p> Mesagem: {{mensagem}}</p>
+    <form action="/admin/comentarios/delete" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit" class="delete"> Apagar comentário</button>
+    </form>
+</div>
+<hr>
+{{else}}
+<h4 class="centralizar">Não há nenhuma mensagem</h4>
+{{/each}}
+</div>

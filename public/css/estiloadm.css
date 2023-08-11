@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -9,17 +10,48 @@ body {
     
 }
 
-h2, h4 {
+h1, h2, h3 {
     text-align: center;
 }
 
 /*1483FF ABD3FF 7BB9FF 00438E 00346D*/
 .sessao-adm {
     width: 96%;
+    word-wrap: break-word;
     min-height: 90vh;
     margin: 4vh auto;
     padding: 1%;
     background-color: #7BB9FF;
     color: #00346D;
     border-radius: 30px;
+
+}
+
+/* ESTILIZAÇÃO DOS BOTÕES*/
+.delete {
+    background-color: #7e1c1c;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bolder;
+    box-shadow: #00346D;
+}
+
+.delete:hover {
+    background-color: #d60e0e;
+    cursor: pointer;
+}
+
+.new {
+    background-color: #15641f;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bolder;
+    box-shadow: #00346D;
+}
+
+.new:hover {
+    background-color: #1eb132;
+    cursor: pointer;
 }

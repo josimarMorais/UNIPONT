@@ -1,3 +1,29 @@
 <div class="sessao-adm">
-<h1>matéria</h1>
+    <h1>Lista de Matérias</h1>
+    <a href="/admin/materia/adicionar"><button class="new">Cadastrar nova matéria</button></a>
+    <hr>
+    {{#each materias}}
+    <div class="recuo">
+        <h4>Nome: {{nome}}</h4>
+        <p> Carga Horária: {{carga_horaria}}</p>
+        <strong>Cursos: </strong>
+        
+        {{#each cursos}}
+        <div class="recuo-b">
+        - {{nome}}. 
+        </div>
+        {{else}}
+        <p>nenhum curso</p>
+        {{/each}}
+        
+    <a href="/admin/materia/editar/{{id}}"><button type="submit" class="new">Editar</button></a>
+    <a href="/admin/materia/deletar/{{id}}"><button type="submit" class="delete">Apagar</button></a>
+    </div>
+    
+    <hr>
+    {{else}}
+    <h4 class="centralizar">Nenhuma materia cadastrada</h4>
+    {{/each}}
+
+
 </div>

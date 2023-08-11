@@ -1,3 +1,19 @@
 <div class="sessao-adm">
-<h1>Curso</h1>
+    <h1>Lista de Cursos</h1>
+    <a href="/admin/curso/adicionar"><button class="new">Cadastrar novo curso</button></a>
+    <hr>
+    {{#each cursos}}
+
+    <div class="recuo">
+        <h4>Nome: {{nome}}</h4>
+        <p> Períodos: {{periodos}}</p>
+       <a href="/admin/curso/editar/{{id}}"><button type="submit" class="new">Editar</button></a>
+       <a href="/admin/curso/deletar/{{id}}"><button type="submit" class="delete">Apagar</button></a>
+    </div>
+    <hr>
+    {{else}}
+    <h4 class="centralizar">Nenhum curso cadastrado</h4>
+    {{/each}}
+
+
 </div>
