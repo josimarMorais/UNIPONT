@@ -9,18 +9,17 @@
             <input type="text" id="nome" name="nome" required>
         </div>
         <div class="form-group">
-            <label for="cargahoraria">Carga Horaria: </label>
-            <input type="text" id="cargahoraria" name="cargahoraria" required>
+            <label for="carga_horaria">Carga Horaria: </label>
+            <input type="text" id="cargahoraria" name="carga_horaria" required>
         </div>
         <div class="form-group">
-            <label for="curso">Curso: </label>
-            <select name="curso_id" id="curso_id">
-                <option value=""></option>
-                {{#each cursos}}    
-                <option value="{{id}}">{{nome}}</option>
-                {{else}}
-                {{/each}}
-            </select>
+            <label for="curso">Cursos: </label>
+        </div>
+        <div>
+            {{#each cursos}}
+                <input type="checkbox" value="{{id}}" name="cursos"> <label for="{{nome}}">{{nome}}</label><br>
+            {{else}}
+            {{/each}}
         </div>
         <div class="button">
             <input type="submit" value="Enviar">

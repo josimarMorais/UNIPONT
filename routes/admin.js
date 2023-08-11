@@ -7,13 +7,15 @@ const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
 const MateriaController     = require('../controllers/MateriaController')
 
-router.get('/principal', (req, res) => {
-    res.render('principal')
-})
+router.get('/principal', (req, res) => { res.render('principal') })
 
 //Rotas Materia
 router.get('/materia', MateriaController.index)
+router.post('/materia/adicionar', MateriaController.store)
 router.get('/materia/adicionar', MateriaController.carregarNovo)
+router.get('/materia/editar/:id', MateriaController.carregarEdicao)
+router.post('/materia/editar', MateriaController.update)
+router.get('/materia/deletar/:id', MateriaController.delete)
 
 
 //Rotas Aluno

@@ -26,6 +26,10 @@ p {
     padding-left: 50px;
 }
 
+.recuo-b {
+    padding-bottom: 10px;
+}
+
 .teste {
     border: 5px solid #fff;
     border-radius: 5px;
