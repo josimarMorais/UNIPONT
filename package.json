@@ -4,7 +4,7 @@
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.7",
+    "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^3.5.2",
     "sequelize": "^6.32.1",
@@ -15,9 +15,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {}
 }
