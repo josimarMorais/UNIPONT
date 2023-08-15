@@ -6,9 +6,11 @@
     const admin      = require('./routes/admin')
     const session    = require("express-session")
     const flash      = require("connect-flash")
+
+    require('dotenv').config()
     
     const app        = express();
-    const port       = 3000;
+    const PORT       = process.env.PORT || 3000;
     
     //Configurações e importações de Módulos referente ao banco de dados
     require('./database');
@@ -93,6 +95,6 @@
     app.use('/admin', admin)
 
 //OUTROS
-    app.listen(port, () => {
-        console.log(`App rodando na porta ${port}`);
+    app.listen(PORT, () => {
+        console.log(`App rodando na porta ${PORT}`);
     });
