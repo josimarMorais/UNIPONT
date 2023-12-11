@@ -6,6 +6,7 @@
     const admin      = require('./routes/admin')
     const session    = require("express-session")
     const flash      = require("connect-flash")
+    const studentRoutes = require('./routes/student');
 
     require('dotenv').config()
     
@@ -93,6 +94,9 @@
 
     //rotas da parte do administrador
     app.use('/admin', admin)
+
+    //rotas da parte do aluno
+    app.use('/student', studentRoutes);
 
 //OUTROS
     app.listen(PORT, () => {
