@@ -1,24 +1,24 @@
 <div class="sessao-adm">
 
-    <h2>EDITAR DADOS Matéria</h2>
-    <form action="/admin/materia/editar" class="main-form" method="POST">
+    <h2>Editar Dados do Professor</h2>
+    <form action="/admin/professor/editar" class="main-form" method="POST">
     <fieldset>
-        <legend>Editar Matéria</legend>
+        <legend>Editar Professor</legend>
         
-        <input type="hidden" name="id" value="{{materia.id}}">
+        <input type="hidden" name="id" value="{{professor.id}}">
 
         <div class="form-group">
             <label for="nome">Nome: </label>
-            <input type="text" id="nome" name="nome" value="{{materia.nome}}" required>
+            <input type="text" id="nome" name="nome" value="{{professor.nome}}" required>
         </div>
         <div class="form-group">
-            <label for="carga_horaria"> Carga Horária </label>
-            <input type="text" id="carga_horaria" name="carga_horaria" value="{{materia.carga_horaria}}" required>
+            <label for="carga_horaria"> Área de Atuação </label>
+            <input type="text" id="carga_horaria" name="carga_horaria" value="{{professor.carga_horaria}}" required>
         </div>
         
         <div>
             <strong>Cursos já cadastrados:</strong><br>
-            {{#each materiaCursos}}
+            {{#each professorCursos}}
                 <input type="checkbox" value="{{id}}" name="cursos" checked> <label for="{{nome}}">{{nome}} </label><br>
             {{else}}
             {{/each}}

@@ -1,0 +1,29 @@
+<div class="sessao-adm">
+    <h1>Lista de Professores</h1>
+    <a href="/admin/professor/adicionar"><button class="new">Cadastrar novo professor</button></a>
+    <hr>
+    {{#each professores}}
+    <div class="recuo">
+        <h4>Nome: {{nome}}</h4>
+        <p> Área de Atuação: {{carga_horaria}}</p>
+        <strong>Cursos: </strong>
+        
+        {{#each cursos}}
+        <div class="recuo-b">
+        - {{nome}}. 
+        </div>
+        {{else}}
+        <p>nenhum curso</p>
+        {{/each}}
+        
+    <a href="/admin/professor/editar/{{id}}"><button type="submit" class="new">Editar</button></a>
+    <a href="/admin/professor/deletar/{{id}}"><button type="submit" class="delete">Apagar</button></a>
+    </div>
+    
+    <hr>
+    {{else}}
+    <h4 class="centralizar">Nenhum professor cadastrado</h4>
+    {{/each}}
+
+
+</div>

@@ -1,21 +1,21 @@
 const express = require('express')
-const router  = express.Router()
+const router = express.Router()
 
 const FaleconoscoController = require('../controllers/FaleconoscoController')
-const CursoController       = require('../controllers/CursoController')
-const ComentarioController  = require('../controllers/ComentarioController')
-const AlunoController       = require('../controllers/AlunoController')
-const MateriaController     = require('../controllers/MateriaController')
+const CursoController = require('../controllers/CursoController')
+const ComentarioController = require('../controllers/ComentarioController')
+const AlunoController = require('../controllers/AlunoController')
+const ProfessorController = require('../controllers/ProfessorController')
 
 router.get('/principal', (req, res) => { res.render('principal') })
 
-//Rotas Materia
-router.get('/materia', MateriaController.index)
-router.post('/materia/adicionar', MateriaController.store)
-router.get('/materia/adicionar', MateriaController.carregarNovo)
-router.get('/materia/editar/:id', MateriaController.carregarEdicao)
-router.post('/materia/editar', MateriaController.update)
-router.get('/materia/deletar/:id', MateriaController.delete)
+//Rotas Professor
+router.get('/professor', ProfessorController.index)
+router.post('/professor/adicionar', ProfessorController.store)
+router.get('/professor/adicionar', ProfessorController.carregarNovo)
+router.get('/professor/editar/:id', ProfessorController.carregarEdicao)
+router.post('/professor/editar', ProfessorController.update)
+router.get('/professor/deletar/:id', ProfessorController.delete)
 
 
 //Rotas Aluno

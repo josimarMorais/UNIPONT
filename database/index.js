@@ -1,29 +1,29 @@
 const Sequelize = require('sequelize')
-const dbConfig  = require('../config/database')
+const dbConfig = require('../config/database')
 
-const Comentario  = require('../models/Comentario')
+const Comentario = require('../models/Comentario')
 const Faleconosco = require('../models/Faleconosco')
-const Curso       = require('../models/Curso')
-const Aluno       = require('../models/Aluno')
-const Materia     = require('../models/Materia')
+const Curso = require('../models/Curso')
+const Aluno = require('../models/Aluno')
+const Professor = require('../models/Professor')
 
-const  connection = new Sequelize(dbConfig)
+const connection = new Sequelize(dbConfig)
 
 Comentario.init(connection)
 Faleconosco.init(connection)
 Curso.init(connection)
 Aluno.init(connection)
-Materia.init(connection)
+Professor.init(connection)
 
 Aluno.associate(connection.models)
 Curso.associate(connection.models)
-Materia.associate(connection.models)
+Professor.associate(connection.models)
 
 //Verificando conexão com o bando de dados
-try{
+try {
     connection.authenticate();
     console.log('conectado com sucesso ao Banco de Dados ')
-} catch(error) {
+} catch (error) {
     console.error('não foi possível conectar')
 }
 
