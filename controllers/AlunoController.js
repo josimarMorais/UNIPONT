@@ -26,23 +26,23 @@ module.exports = {
 
 
     async store(req, res) {
-        const {nome, matricula, telefone, curso_id} = req.body
+        const {nome, matricula, telefone, status, curso_id} = req.body
         const curso = await Curso.findByPk(curso_id);
         if(!curso) {
             req.flash("error_msg", "Curso não cadastrado.")
             return res.redirect('/admin/aluno')
         }
-        const aluno = await Aluno.create({nome, matricula, telefone, curso_id})
+        const aluno = await Aluno.create({nome, matricula, telefone, status, curso_id})
         req.flash("success_msg", "Aluno cadastrado com sucesso!")
         return res.redirect('/admin/aluno')
     },
 
 
     async update(req, res) {
-        const { id, nome, matricula, telefone, curso_id } = req.body;
+        const { id, nome, matricula, telefone, status, curso_id } = req.body;
 
         await Aluno.update({
-            nome, matricula, telefone, curso_id
+            nome, matricula, telefone, status, curso_id
         }, {
             where: { id }
         })

@@ -5,7 +5,11 @@ class Aluno extends Model {
         super.init({
             nome     : DataTypes.STRING,
             matricula: DataTypes.STRING,
-            telefone : DataTypes.STRING
+            telefone : DataTypes.STRING,
+            status: {
+                type: DataTypes.ENUM('Ativo', 'Trancado', 'Cancelado'),
+                defaultValue: 'Ativo',
+            },
         }, {
             sequelize
         })
