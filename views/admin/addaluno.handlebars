@@ -1,5 +1,4 @@
 <div class="sessao-adm">
-
     <h2>NOVO ALUNO</h2>
     <form action="/admin/aluno/adicionar" class="main-form" method="POST">
     <fieldset>
@@ -24,6 +23,14 @@
                 <option value="{{id}}">{{nome}}</option>
                 {{else}}
                 {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="status" > Status: </label>
+            <select name="status" id="status" style="background-color: greenyellow;">
+                <option value="Ativo">Ativo</option>
+                <option value="Trancado">Trancado</option>
+                <option value="Cancelado">Cancelado</option>
             </select>
         </div>
         <div class="button">
