@@ -10,6 +10,7 @@ class Aluno extends Model {
                 type: DataTypes.ENUM('Ativo', 'Trancado', 'Cancelado'),
                 defaultValue: 'Ativo',
             },
+            telefone : DataTypes.STRING
         }, {
             sequelize
         })
@@ -18,5 +19,4 @@ class Aluno extends Model {
         this.belongsTo(models.Curso, { foreignKey: 'curso_id', as: 'curso'})
     }
 }
-
 module.exports = Aluno;
