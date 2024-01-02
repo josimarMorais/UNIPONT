@@ -1,12 +1,16 @@
 {
   "description": "Universidade Pontalina",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "keyv": "^4.5.4",
     "mysql2": "^3.5.2",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1"

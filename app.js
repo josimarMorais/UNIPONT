@@ -7,6 +7,9 @@
     const session    = require("express-session")
     const flash      = require("connect-flash")
 
+    //Para uso da autenticação de usuários
+    app.use('/api', indexRouter);  
+
     require('dotenv').config()
     
     const app        = express();
