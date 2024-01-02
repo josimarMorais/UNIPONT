@@ -6,13 +6,13 @@ class Curso extends Model {
             nome: DataTypes.STRING,
             periodos: DataTypes.INTEGER
         }, {
-            sequelize,
+            sequelize, 
         })
     }
 
     static associate(models) {
-        this.hasMany(models.Aluno, { foreignKey: 'curso_id', as: 'alunos' })
-        this.belongsToMany(models.Professor, { foreignKey: 'curso_id', through: 'cursos_materias', as: 'materias' })
+        this.hasMany(models.Aluno, { foreignKey: 'curso_id', as: 'alunos'})
+        this.belongsToMany(models.Materia, { foreignKey: 'curso_id', through: 'cursos_materias', as: 'materias'})
     }
 
 }

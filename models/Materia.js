@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
 
-class Professor extends Model {
+class Materia extends Model {
     static init(sequelize) {
         super.init({
             nome: DataTypes.STRING,
@@ -11,8 +11,8 @@ class Professor extends Model {
         })
     }
     static associate(models) {
-        this.belongsToMany(models.Curso, { foreignKey: 'materia_id', through: 'cursos_materias', as: 'cursos' })
+        this.belongsToMany(models.Curso, { foreignKey: 'materia_id', through: 'cursos_materias', as: 'cursos'})
     }
 }
 
-module.exports = Professor;
+module.exports = Materia;
