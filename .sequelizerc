@@ -1,6 +1,9 @@
 const path = require('path')
 
-//comando do Sequelize cli  
+//comando do Sequelize cli
+// TODOS OS COMANDOS DEVEM SER EXECUTADOS DENTRO DA PASTA ./database/migrations
+// morria e não resolvia isso.
+
     //Criar um bando de dados: 
         //npx sequelize db:create
 

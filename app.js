@@ -6,6 +6,10 @@
     const admin      = require('./routes/admin')
     const session    = require("express-session")
     const flash      = require("connect-flash")
+    //Rotas de autenticação
+    const authRoutes = require('./routes/authRoutes');
+    //Cookie Parser
+    const cookieParser = require('cookie-parser');
 
     require('dotenv').config()
     
@@ -77,20 +81,6 @@
     app.post('/novocontato', FaleconoscoController.store)
     app.get('/fale', FaleconoscoController.index)
 
-
-    app.get('/login', (req, res) => {
-        res.render('login')
-    })
-    
-    app.post('/login', (req, res) => {
-        if(req.body.email == "adm" && req.body.senha == 123){
-            res.render('admin/principal', {layout: 'administrador'})
-        }else {
-            req.flash("error_msg", "E-mail ou senha inválidos")
-            res.redirect('/login')
-        }
-    })
-
     //rotas da parte do administrador
     app.use('/admin', admin)
 
@@ -98,3 +88,15 @@
     app.listen(PORT, () => {
         console.log(`App rodando na porta ${PORT}`);
     });
+
+//Usar rotas de autenticação
+app.use(authRoutes);
+
+//Usar Cookies(middleware)
+app.use(cookieParser());
+
+//Cookies (JWT)
+app.get('/set-cookies', (req, res) => {
+    res.cookie('newUser', false);
+    
+})

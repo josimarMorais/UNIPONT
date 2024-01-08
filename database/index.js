@@ -6,6 +6,7 @@ const Faleconosco = require('../models/Faleconosco')
 const Curso       = require('../models/Curso')
 const Aluno       = require('../models/Aluno')
 const Materia     = require('../models/Materia')
+const Usuario = require('../models/Usuario')
 
 const  connection = new Sequelize(dbConfig)
 
@@ -14,17 +15,22 @@ Faleconosco.init(connection)
 Curso.init(connection)
 Aluno.init(connection)
 Materia.init(connection)
+Usuario.init(connection)
 
 Aluno.associate(connection.models)
 Curso.associate(connection.models)
 Materia.associate(connection.models)
 
 //Verificando conexão com o bando de dados
-try{
-    connection.authenticate();
-    console.log('conectado com sucesso ao Banco de Dados ')
-} catch(error) {
-    console.error('não foi possível conectar')
+async function setupDatabaseConnection(){
+    try{
+        await connection.authenticate();
+        console.log('conectado com sucesso ao Banco de Dados ')
+    } catch(error) {
+        console.error('não foi possível conectar')
+    }
 }
+
+setupDatabaseConnection();
 
 module.exports = connection
