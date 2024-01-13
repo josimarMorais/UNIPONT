@@ -70,8 +70,8 @@ module.exports.login_post = async (req, res) => {
     }
 };
 
-//Rota de Logout (ainda não implementada)
-//module.exports.logout_get = (req, res) => {
-//    //Renderiza o arquivo logout
-//    res.render('logout');
-//};
+//Rota de Logout
+module.exports.logout_get = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/login');
+};

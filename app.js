@@ -8,6 +8,7 @@
     const flash      = require("connect-flash")
     //Rotas de autenticação
     const authRoutes = require('./routes/authRoutes');
+    const { checkUser } = require('./middleware/authMiddleware');
     //Cookie Parser
     const cookieParser = require('cookie-parser');
 
@@ -20,6 +21,13 @@
     require('./database');
     const ComentarioController = require('./controllers/ComentarioController')
     const FaleconoscoController = require('./controllers/FaleconoscoController')
+
+// MIDDLEWARE
+    app.get('*', checkUser);
+    app.use(cookieParser());
+
+// Rotas de Autenticação
+    app.use(authRoutes);
 
 
 //Configurações dos módulos
@@ -88,15 +96,3 @@
     app.listen(PORT, () => {
         console.log(`App rodando na porta ${PORT}`);
     });
-
-//Usar rotas de autenticação
-app.use(authRoutes);
-
-//Usar Cookies(middleware)
-app.use(cookieParser());
-
-//Cookies (JWT)
-app.get('/set-cookies', (req, res) => {
-    res.cookie('newUser', false);
-    
-})

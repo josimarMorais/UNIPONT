@@ -28,6 +28,9 @@ class Aluno extends Model {
         })
     }
     static associate(models) {
+        // Adiciona a associação com a tabela Usuarios usando a nova coluna usuario_id
+        this.belongsTo(models.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
+
         this.belongsTo(models.Curso, { foreignKey: 'curso_id', as: 'curso'})
     }
 }
