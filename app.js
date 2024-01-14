@@ -22,14 +22,6 @@
     const ComentarioController = require('./controllers/ComentarioController')
     const FaleconoscoController = require('./controllers/FaleconoscoController')
 
-// MIDDLEWARE
-    app.get('*', checkUser);
-    app.use(cookieParser());
-
-// Rotas de Autenticação
-    app.use(authRoutes);
-
-
 //Configurações dos módulos
     //Sessão
         app.use(session({
@@ -96,3 +88,10 @@
     app.listen(PORT, () => {
         console.log(`App rodando na porta ${PORT}`);
     });
+
+// MIDDLEWARE
+app.use(cookieParser());
+app.get('*', checkUser);
+
+// Rotas de Autenticação
+app.use(authRoutes);
