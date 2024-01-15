@@ -84,14 +84,14 @@
     //rotas da parte do administrador
     app.use('/admin', admin)
 
+// MIDDLEWARE
+    app.use(cookieParser());
+    app.get('*', checkUser);
+
+// Rotas de Autenticação
+    app.use(authRoutes);
+
 //OUTROS
     app.listen(PORT, () => {
         console.log(`App rodando na porta ${PORT}`);
     });
-
-// MIDDLEWARE
-app.use(cookieParser());
-app.get('*', checkUser);
-
-// Rotas de Autenticação
-app.use(authRoutes);
