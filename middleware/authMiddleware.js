@@ -28,7 +28,9 @@ const requireLoggedOut = (req, res, next) => {
 
     //Verifica se o token existe
     if (token) {
+        
         //Se o token existir, redireciona para a homepage e envia um erro
+        
         res.redirect('/');
         res.status(401).send('Você já está logado.');
     } else {
