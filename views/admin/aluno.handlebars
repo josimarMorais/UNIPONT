@@ -4,9 +4,10 @@
     <hr>
     {{#each alunos}}
     <div class="recuo">
-        <h4>Nome: {{nome}}</h4>
+        {{!-- Refatorar --}}
+        {{!-- <h4>Nome: {{nome}}</h4> --}}
         <p> Matricula: {{matricula}}</p>
-        <p> Telefone: {{telefone}}</p>
+        {{!-- <p> Telefone: {{telefone}}</p> --}}
         <p> Curso: {{curso.nome}}</p>
         <p style="background-color: greenyellow;"> Status: {{status}}</p>
        <a href="/admin/aluno/editar/{{id}}"><button type="submit" class="new">Editar</button></a>

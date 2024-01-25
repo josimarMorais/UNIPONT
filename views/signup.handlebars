@@ -1,0 +1,86 @@
+{{!-- Front-end ainda não implementado completamente --}}
+
+{{!-- Apenas um Form implementado com o script embaixo para o cadastro --}}
+<div class="sessao-login">
+    |<div class="conteudo-login">
+        <form class="main-form">
+            <h1>Cadastro</h1>
+
+            <div class="form-group">
+            <label for="Nome">Nome</label>
+            <input type="text" id="nome" name="nome" required />
+            </div>
+
+            <div class="Erro no nome"></div>
+
+            <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="Erro no email"></div>
+
+            <div class="form-group">
+            <label for="Senha">Senha</label>
+            <input type="password" id="senha" name="senha" required />
+            </div>
+
+            <div class="Erro na senha"></div>
+
+            <div class="form-group">
+            <label for="Role">Tipo de Conta:</label>
+            <select name="role" id="role">
+            </div>
+
+            <div class="form-group">
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="admin">Administrador</option>
+            </div>
+
+            <div class="button">
+                <input  type="submit" value="Enviar">
+            </div>
+
+            <div id="mensagem"></div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    // Script para o cadastro de um novo usuário,
+    // pega os valores do form e envia para o servidor
+    const form = document.querySelector('form');
+    const mensagem = document.querySelector('#mensagem');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const nome = form.nome.value;
+        const email = form.email.value;
+        const senha = form.senha.value;
+        const role = form.role.value;
+
+        try {
+            // envia os dados para o servidor
+            const res = await fetch('/signup', {
+                method: 'POST',
+                body: JSON.stringify({ nome, email, senha, role }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            // Verifica se a resposta tem status 201 (Created)
+            if (res.status === 201) {
+                const data = await res.json();
+                mensagem.textContent = 'Usuário criado com sucesso!';
+                form.reset();
+            } else {
+                // Se a resposta não for 201, trata o erro
+                const errorMessage = await res.text();
+                mensagem.textContent = `Erro: ${errorMessage}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    })
+</script>

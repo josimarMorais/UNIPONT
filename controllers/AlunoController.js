@@ -1,5 +1,6 @@
 const Aluno = require('../models/Aluno')
 const Curso = require('../models/Curso')
+const Usuario = require('../models/Usuario')
 
 module.exports = {
     async index(req, res) {
@@ -26,23 +27,23 @@ module.exports = {
 
 
     async store(req, res) {
-        const {nome, matricula, telefone, status, curso_id} = req.body
+        const {matricula, status, curso_id, usuario_id} = req.body
         const curso = await Curso.findByPk(curso_id);
         if(!curso) {
             req.flash("error_msg", "Curso não cadastrado.")
             return res.redirect('/admin/aluno')
         }
-        const aluno = await Aluno.create({nome, matricula, telefone, status, curso_id})
+        const aluno = await Aluno.create({matricula, status, curso_id, usuario_id})
         req.flash("success_msg", "Aluno cadastrado com sucesso!")
         return res.redirect('/admin/aluno')
     },
 
 
     async update(req, res) {
-        const { id, nome, matricula, telefone, status, curso_id } = req.body;
+        const { id, matricula, status, curso_id, usuario_id } = req.body;
 
         await Aluno.update({
-            nome, matricula, telefone, status, curso_id
+            nome, matricula, status, curso_id, usuario_id
         }, {
             where: { id }
         })

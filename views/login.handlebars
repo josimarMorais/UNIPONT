@@ -12,7 +12,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="senha">Senha: </label>
-                                <input type="password" name="senha" id="senha">
+                                <input type="password" name="senha" id="senha" required>
                             </div>
                             <div class="button">
                                 <input  type="submit" value="Enviar">
@@ -22,4 +22,40 @@
                     <br>
     </div>
 </div>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = form.email.value;
+        const senha = form.senha.value;
+
+        try {
+            // envia os dados para o servidor
+            const res = await fetch('/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, senha }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (res.status === 200) {
+                const responseData = await res.json();
+
+                // Redirecionamento com base na role
+                if (responseData.role === 'admin') {
+                    window.location.href = '/admin';
+                } else if (responseData.role === 'aluno') {
+                    window.location.href = '/aluno';
+                } else if (responseData.role === 'professor') {
+                    window.location.href = '/professor';
+                }
+            } else {
+                // Tratar erro de login(ainda não feito)
+                console.log('Erro de login:', res.statusText);
+        } catch (error) {
+            console.log(error);
+        }
+    })
+</script>
 
