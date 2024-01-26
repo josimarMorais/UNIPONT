@@ -65,7 +65,7 @@ module.exports.login_post = async (req, res) => {
 
         //Verifica o role do usuário e redireciona para a rota correspondente
         if (user.role === 'admin') {
-            return res.render('admin/principal', { token, layout : 'administrador'});
+            return res.redirect('../admin/principal');
         } else if (user.role === 'aluno') {
             console.log('aluno');
            return res.redirect('../aluno/inicio');

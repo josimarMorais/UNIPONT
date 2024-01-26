@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/Usuario');
-const cookieParser = require('cookie-parser');
 
 //-----------------------------------------------------------------------------------------
 //Exemplo de implementação do uso de Cookies JWT nas rotas:
@@ -123,7 +122,7 @@ const requireRole = (requiredRole) => async (req, res, next) => {
                 res.locals.user = null;
                 next();
             } else {
-                
+
                 let user = await Usuario.findByPk(decodedToken.id);
 
                 // Checa se o usuário tem o role correto
@@ -131,12 +130,28 @@ const requireRole = (requiredRole) => async (req, res, next) => {
                     res.locals.user = user;
                     next();
                 } else {
-                    res.status(403).json({ error: 'Access forbidden: Insufficient privileges' });
+
+                    //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
+                    if (user.role === "admin") {
+                        req.flash("error_msg", "Você não tem permissão para acessar essa página.");
+                        return res.redirect('../admin/principal');
+                    }
+
+                    if (user.role === "aluno") {
+                        req.flash("error_msg", "Você não tem permissão para acessar essa página.");
+                        return res.redirect('../aluno/inicio');
+                    }
+
+                    if (user.role === "professor") {
+                        req.flash("error_msg", "Você não tem permissão para acessar essa página.");
+                        return res.redirect('../professor/inicio');
+                    }
                 }
             }
         });
     } else {
-        res.status(401).json({ error: 'Access forbidden: Insufficient privileges' });
+        req.flash("error_msg", "Sessão expirada. Faça login novamente.");
+        res.redirect('../../auth/login');
     }
 };
 

@@ -10,7 +10,6 @@ const MateriaController     = require('../controllers/MateriaController')
 
 const { requireRole, checkUser } = require('../middleware/authMiddleware')
 
-const cookieParser = require('cookie-parser');
 
 //Criado a rota que leva para a página principal da área administrativa.
 router.get('/principal', requireRole('admin'), AlunoController.principal)
