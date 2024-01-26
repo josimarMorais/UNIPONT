@@ -21,7 +21,7 @@ const createToken = (id, role) => {
 //Rotas de Signup
 module.exports.signup_get = (req, res) => {
     //Renderiza o arquivo signup
-    res.render('signup');
+    res.render('signup', {layout: "administrador"});
 };
 
 module.exports.signup_post = async (req, res) => {
