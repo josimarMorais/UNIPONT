@@ -34,20 +34,26 @@ const requireLoggedOut = (req, res, next) => {
 
             console.log(decodedToken);
 
-            //busca o usuário pelo id:
-            let user = await Usuario.findByPk(decodedToken.id);
+            try {
 
-            //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
-            if (user.role === "admin") {
-                return res.redirect('../admin/principal');
-            }
+                //busca o usuário pelo id:
+                let user = await Usuario.findByPk(decodedToken.id);
 
-            if (user.role === "aluno") {
-                return res.redirect('../aluno/inicio');
-            }
+                //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
+                if (user.role === "admin") {
+                    return res.redirect('../admin/principal');
+                }
 
-            if (user.role === "professor") {
-                return res.redirect('../professor/inicio');
+                if (user.role === "aluno") {
+                    return res.redirect('../aluno/inicio');
+                }
+
+                if (user.role === "professor") {
+                    return res.redirect('../professor/inicio');
+                }
+
+            } catch (error) {
+                return res.render('login');
             }
 
         });
