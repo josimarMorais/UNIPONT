@@ -24,30 +24,30 @@ router.get('/materia/deletar/:id', requireRole('admin'), MateriaController.delet
 
 
 //Rotas Aluno
-router.get('/aluno', AlunoController.index)
-router.post('/aluno/adicionar', AlunoController.store)
-router.get('/aluno/adicionar', AlunoController.carregarNovo)
-router.get('/aluno/editar/:id', AlunoController.carregarEdicao)
-router.post('/aluno/editar', AlunoController.update)
-router.get('/aluno/deletar/:id', AlunoController.delete)
+router.get('/aluno', requireRole('admin'), AlunoController.index)
+router.post('/aluno/adicionar',  requireRole('admin'), AlunoController.store)
+router.get('/aluno/adicionar', requireRole('admin'), AlunoController.carregarNovo)
+router.get('/aluno/editar/:id', requireRole('admin'), AlunoController.carregarEdicao)
+router.post('/aluno/editar', requireRole('admin'), AlunoController.update)
+router.get('/aluno/deletar/:id', requireRole('admin'), AlunoController.delete)
 
 //Rotas Curso
-router.get('/curso', CursoController.index)
-router.post('/curso/adicionar', CursoController.store)
-router.get('/curso/adicionar', CursoController.carregarNovo)
-router.get('/curso/editar/:id', CursoController.carregarEdicao)
-router.post('/curso/editar', CursoController.update)
-router.get('/curso/deletar/:id', CursoController.delete)
+router.get('/curso', requireRole('admin'), CursoController.index)
+router.post('/curso/adicionar', requireRole('admin'), CursoController.store)
+router.get('/curso/adicionar', requireRole('admin'), CursoController.carregarNovo)
+router.get('/curso/editar/:id', requireRole('admin'), CursoController.carregarEdicao)
+router.post('/curso/editar', requireRole('admin'), CursoController.update)
+router.get('/curso/deletar/:id', requireRole('admin'), CursoController.delete)
 
 
 //Rotas Comentários
-router.get('/comentarios', ComentarioController.comentarioindex)
-router.post('/comentarios/delete', ComentarioController.delete)
+router.get('/comentarios', requireRole('admin'), ComentarioController.comentarioindex)
+router.post('/comentarios/delete', requireRole('admin'), ComentarioController.delete)
 
 
 //Rotas FaleConosco
-router.get('/faleadm', FaleconoscoController.admindex)
-router.post('/fale/delete', FaleconoscoController.delete)
+router.get('/faleadm', requireRole('admin'), FaleconoscoController.admindex)
+router.post('/fale/delete', requireRole('admin'), FaleconoscoController.delete)
 
 
 module.exports = router
