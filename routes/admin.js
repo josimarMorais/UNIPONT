@@ -8,7 +8,7 @@ const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
 const MateriaController     = require('../controllers/MateriaController')
 
-const { requireRole, checkUser } = require('../middleware/authMiddleware')
+const { requireRole } = require('../middleware/authMiddleware')
 
 
 //Criado a rota que leva para a página principal da área administrativa.
