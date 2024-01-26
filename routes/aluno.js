@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const { requireRole } = require('../middleware/authMiddleware')
+const { requireRole } = require('../middleware/authMiddleware');
 
 const ControllerAluno     = require('../controllers/aluno/ControllerAluno');
 
