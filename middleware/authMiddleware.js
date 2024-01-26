@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/Usuario');
+const cookieParser = require('cookie-parser');
 
 //-----------------------------------------------------------------------------------------
 //Exemplo de implementação do uso de Cookies JWT nas rotas:
@@ -38,6 +39,8 @@ const requireLoggedOut = (req, res, next) => {
 
                 //busca o usuário pelo id:
                 let user = await Usuario.findByPk(decodedToken.id);
+
+                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
                 //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
                 if (user.role === "admin") {
@@ -109,6 +112,7 @@ const checkUser = (req, res, next) => {
 
 //Função para verificar se o usuário tem uma role específica e está logado.
 const requireRole = (requiredRole) => async (req, res, next) => {
+
     const token = req.cookies.jwt;
 
     // Verifica se o token existe
@@ -119,6 +123,7 @@ const requireRole = (requiredRole) => async (req, res, next) => {
                 res.locals.user = null;
                 next();
             } else {
+                
                 let user = await Usuario.findByPk(decodedToken.id);
 
                 // Checa se o usuário tem o role correto

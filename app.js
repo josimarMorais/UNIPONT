@@ -91,6 +91,13 @@
     app.post('/novocontato', FaleconoscoController.store)
     app.get('/fale', FaleconoscoController.index)
 
+
+    
+ // MIDDLEWARE
+ app.use(cookieParser());
+ app.get('*', checkUser);
+
+
 //rotas da parte do administrador
     app.use('/admin', admin);
 
@@ -99,10 +106,6 @@
 
 //rotas da parte do professor
     app.use('/professor', professor);
-
-// MIDDLEWARE
-    app.use(cookieParser());
-    app.get('*', checkUser);
 
 // Rotas de Autenticação
     app.use('/auth', authRoutes);

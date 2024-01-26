@@ -1,23 +1,27 @@
 const express = require('express')
 const router  = express.Router()
 
+
 const FaleconoscoController = require('../controllers/FaleconoscoController')
 const CursoController       = require('../controllers/CursoController')
 const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
 const MateriaController     = require('../controllers/MateriaController')
 
+const { requireRole, checkUser } = require('../middleware/authMiddleware')
+
+const cookieParser = require('cookie-parser');
 
 //Criado a rota que leva para a página principal da área administrativa.
-router.get('/principal', AlunoController.principal)
+router.get('/principal', requireRole('admin'), AlunoController.principal)
 
 //Rotas Materia
-router.get('/materia', MateriaController.index)
-router.post('/materia/adicionar', MateriaController.store)
-router.get('/materia/adicionar', MateriaController.carregarNovo)
-router.get('/materia/editar/:id', MateriaController.carregarEdicao)
-router.post('/materia/editar', MateriaController.update)
-router.get('/materia/deletar/:id', MateriaController.delete)
+router.get('/materia',  requireRole('admin'), MateriaController.index)
+router.post('/materia/adicionar', requireRole('admin'), MateriaController.store)
+router.get('/materia/adicionar', requireRole('admin'), MateriaController.carregarNovo)
+router.get('/materia/editar/:id', requireRole('admin'), MateriaController.carregarEdicao)
+router.post('/materia/editar', requireRole('admin'), MateriaController.update)
+router.get('/materia/deletar/:id', requireRole('admin'), MateriaController.delete)
 
 
 //Rotas Aluno
