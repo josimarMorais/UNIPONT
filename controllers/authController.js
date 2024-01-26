@@ -2,13 +2,17 @@
 
 //Importando o model de Usuário
 const Usuario = require('../models/Usuario');
+
 //Importando JWT
 const jwt = require('jsonwebtoken');
+
 //Utilizando o .env
 require('dotenv').config({ path: '../.env' }); 
 
 //JWT
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 30;
+//3 * 24 * 60 * 60
+
 const createToken = (id, role) => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: maxAge });
 }
@@ -34,7 +38,9 @@ module.exports.signup_post = async (req, res) => {
         // res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
         //Status 201 indica que o usuário foi criado
+
         res.status(201).json({ user });
+
     } catch (error) {
         console.log(error);
         res.status(400).send('Erro, não foi possível cadastrar o usuário');
@@ -44,11 +50,13 @@ module.exports.signup_post = async (req, res) => {
 //Rotas de Login
 module.exports.login_get = (req, res) => {
     //Renderiza o arquivo login
+
     res.render('login');
 };
 
 module.exports.login_post = async (req, res) => {
     const { email, senha } = req.body;
+
     try {
         const user = await Usuario.login(email, senha);
         const token = createToken(user.id, user.role);
@@ -56,12 +64,13 @@ module.exports.login_post = async (req, res) => {
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         //Verifica o role do usuário e redireciona para a rota correspondente
         if (user.role === 'admin') {
-            res.redirect('/admin');
+           return res.redirect('../admin/principal');
+
         } else if (user.role === 'aluno') {
             console.log('aluno');
-            res.redirect('/aluno');
+           return res.redirect('../aluno/inicio');
         } else if (user.role === 'professor') {
-            res.redirect('/professor');
+           return res.redirect('../professor/inicio');
         }
         res.status(200);
     } catch (error) {
@@ -73,5 +82,5 @@ module.exports.login_post = async (req, res) => {
 //Rota de Logout
 module.exports.logout_get = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/login');
+    res.redirect('login');
 };

@@ -22,17 +22,44 @@ const Usuario = require('../models/Usuario');
 
 //-----------------------------------------------------------------------------------------
 
-// Para uso apenas no /login, se o usuário já está logado, redireciona para a homepage
+// Para uso apenas no /login, se o usuário já está logado, redireciona o usuário para sua página, dependendo da sua role.
 const requireLoggedOut = (req, res, next) => {
     const token = req.cookies.jwt;
 
     //Verifica se o token existe
     if (token) {
-        //Se o token existir, redireciona para a homepage e envia um erro
-        res.redirect('/');
-        res.status(401).send('Você já está logado.');
+
+        //Se o token existir:
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+
+            console.log(decodedToken);
+
+            try {
+
+                //busca o usuário pelo id:
+                let user = await Usuario.findByPk(decodedToken.id);
+
+                //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
+                if (user.role === "admin") {
+                    return res.redirect('../admin/principal');
+                }
+
+                if (user.role === "aluno") {
+                    return res.redirect('../aluno/inicio');
+                }
+
+                if (user.role === "professor") {
+                    return res.redirect('../professor/inicio');
+                }
+
+            } catch (error) {
+                return res.render('login');
+            }
+
+        });
+
     } else {
-        next();
+        return res.render('login');
     }
 }
 
@@ -45,15 +72,16 @@ const requireAuth = (req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
-                res.redirect('/login');
+                res.redirect('login');
             } else {
                 next();
             }
         });
     } else {
-        res.redirect('/login');
+        res.redirect('login');
     }
 }
+
 
 //Checa se o usuário existe no banco de dados e retorna o objeto do usuário
 const checkUser = (req, res, next) => {
@@ -92,7 +120,7 @@ const requireRole = (requiredRole) => async (req, res, next) => {
                 next();
             } else {
                 let user = await Usuario.findByPk(decodedToken.id);
-                
+
                 // Checa se o usuário tem o role correto
                 if (user && user.role === requiredRole) {
                     res.locals.user = user;

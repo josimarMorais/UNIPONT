@@ -7,7 +7,9 @@ const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
 const MateriaController     = require('../controllers/MateriaController')
 
-router.get('/principal', (req, res) => { res.render('principal') })
+
+//Criado a rota que leva para a página principal da área administrativa.
+router.get('/principal', AlunoController.principal)
 
 //Rotas Materia
 router.get('/materia', MateriaController.index)

@@ -1,7 +1,7 @@
 //Rotas de autenticação que são implementadas no authController.js e utilizadas pelo app.js
 
 //Importando middleware
-const { requireLoggedOut, requireAuth } = require('../middleware/authMiddleware');
+const { requireLoggedOut, requireAuth , checkUser } = require('../middleware/authMiddleware');
 
 //Router requer o express
 const { Router } = require('express');
@@ -19,7 +19,7 @@ router.get('/signup', authController.signup_get);
 router.post('/signup', authController.signup_post);
 
 //Login
-router.get('/login', requireLoggedOut, authController.login_get);
+router.get('/login', requireLoggedOut, authController.login_post);
 
 router.post('/login', authController.login_post);
 
