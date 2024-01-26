@@ -3,11 +3,16 @@
     const path       = require('path');
     const bodyparser = require('body-parser');
     const handlebars = require('express-handlebars');
-    const admin      = require('./routes/admin');
     const session    = require("express-session");
     const flash      = require("connect-flash");
+    
+    // Importando as rotas do administrativo
+    const admin      = require('./routes/admin');
 
-    //Rotas de autenticação
+    //Importando as rotas dos Alunos
+    const aluno = require('./routes/aluno');
+
+    //Importando as rotas de autenticação
     const authRoutes = require('./routes/authRoutes');
     const { checkUser } = require('./middleware/authMiddleware');
 
@@ -83,8 +88,11 @@
     app.post('/novocontato', FaleconoscoController.store)
     app.get('/fale', FaleconoscoController.index)
 
-    //rotas da parte do administrador
-    app.use('/admin', admin)
+//rotas da parte do administrador
+    app.use('/admin', admin);
+
+//rotas da parte do aluno
+    app.use('/aluno', aluno);
 
 // MIDDLEWARE
     app.use(cookieParser());

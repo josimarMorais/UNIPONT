@@ -19,7 +19,7 @@ router.get('/signup', authController.signup_get);
 router.post('/signup', authController.signup_post);
 
 //Login
-router.get('/login', requireLoggedOut, authController.login_get);
+router.get('/login', requireLoggedOut, authController.login_post);
 
 router.post('/login', authController.login_post);
 

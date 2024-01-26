@@ -2,8 +2,10 @@
 
 //Importando o model de Usuário
 const Usuario = require('../models/Usuario');
+
 //Importando JWT
 const jwt = require('jsonwebtoken');
+
 //Utilizando o .env
 require('dotenv').config({ path: '../.env' }); 
 
@@ -62,12 +64,13 @@ module.exports.login_post = async (req, res) => {
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         //Verifica o role do usuário e redireciona para a rota correspondente
         if (user.role === 'admin') {
-            res.redirect('/admin/principal');
+           return res.redirect('../admin/aluno');
+
         } else if (user.role === 'aluno') {
             console.log('aluno');
-            res.redirect('/aluno');
+           return res.redirect('../aluno/inicio');
         } else if (user.role === 'professor') {
-            res.redirect('/professor');
+           return res.redirect('/professor');
         }
         res.status(200);
     } catch (error) {
@@ -79,5 +82,5 @@ module.exports.login_post = async (req, res) => {
 //Rota de Logout
 module.exports.logout_get = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/login');
+    res.redirect('login');
 };
