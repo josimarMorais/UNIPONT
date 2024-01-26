@@ -3,6 +3,11 @@ const Curso = require('../models/Curso')
 const Usuario = require('../models/Usuario')
 
 module.exports = {
+
+    async  principal(req, res) {
+            res.render('admin/principal', { layout: 'administrador'});
+        },
+
     async index(req, res) {
         const alunos = await Aluno.findAll({
             include: { association: 'curso'}

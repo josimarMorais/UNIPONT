@@ -64,7 +64,7 @@ module.exports.login_post = async (req, res) => {
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         //Verifica o role do usuário e redireciona para a rota correspondente
         if (user.role === 'admin') {
-           return res.redirect('../admin/aluno');
+           return res.redirect('../admin/principal');
 
         } else if (user.role === 'aluno') {
             console.log('aluno');

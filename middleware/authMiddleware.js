@@ -39,7 +39,7 @@ const requireLoggedOut = (req, res, next) => {
 
             //Verifica qual role o usuário faz parte e redireciona o mesmo para o local correto.
             if (user.role === "admin") {
-                return res.redirect('../admin/aluno');
+                return res.redirect('../admin/principal');
             }
 
             if (user.role === "aluno") {
