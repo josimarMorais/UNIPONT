@@ -12,6 +12,9 @@
     //Importando as rotas dos Alunos
     const aluno = require('./routes/aluno');
 
+    // Importando as rotas do professor
+    const professor = require('./routes/professor');
+
     //Importando as rotas de autenticação
     const authRoutes = require('./routes/authRoutes');
     const { checkUser } = require('./middleware/authMiddleware');
@@ -93,6 +96,9 @@
 
 //rotas da parte do aluno
     app.use('/aluno', aluno);
+
+//rotas da parte do professor
+    app.use('/professor', professor);
 
 // MIDDLEWARE
     app.use(cookieParser());

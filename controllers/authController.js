@@ -70,7 +70,7 @@ module.exports.login_post = async (req, res) => {
             console.log('aluno');
            return res.redirect('../aluno/inicio');
         } else if (user.role === 'professor') {
-           return res.redirect('/professor');
+           return res.redirect('../professor/inicio');
         }
         res.status(200);
     } catch (error) {

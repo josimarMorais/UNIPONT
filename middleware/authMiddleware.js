@@ -46,6 +46,10 @@ const requireLoggedOut = (req, res, next) => {
                 return res.redirect('../aluno/inicio');
             }
 
+            if (user.role === "professor") {
+                return res.redirect('../professor/inicio');
+            }
+
         });
 
     } else {
