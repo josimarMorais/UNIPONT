@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '../.env' }); 
 
 //JWT
-const maxAge = 30;
+const maxAge = 60;
 //3 * 24 * 60 * 60
 
 const createToken = (id, role) => {
@@ -21,7 +21,7 @@ const createToken = (id, role) => {
 //Rotas de Signup
 module.exports.signup_get = (req, res) => {
     //Renderiza o arquivo signup
-    res.render('signup');
+    res.render('signup', {layout: "administrador"});
 };
 
 module.exports.signup_post = async (req, res) => {
@@ -50,7 +50,6 @@ module.exports.signup_post = async (req, res) => {
 //Rotas de Login
 module.exports.login_get = (req, res) => {
     //Renderiza o arquivo login
-
     res.render('login');
 };
 
@@ -60,12 +59,13 @@ module.exports.login_post = async (req, res) => {
     try {
         const user = await Usuario.login(email, senha);
         const token = createToken(user.id, user.role);
+
         //Envia a resposta com o token
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+
         //Verifica o role do usuário e redireciona para a rota correspondente
         if (user.role === 'admin') {
-           return res.redirect('../admin/principal');
-
+            return res.redirect('../admin/principal');
         } else if (user.role === 'aluno') {
             console.log('aluno');
            return res.redirect('../aluno/inicio');
