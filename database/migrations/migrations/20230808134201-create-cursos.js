@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false
       },
 
-      periodos: {
+      horas: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

@@ -4,7 +4,7 @@ class Curso extends Model {
     static init(sequelize) {
         super.init({
             nome: DataTypes.STRING,
-            periodos: DataTypes.INTEGER
+            horas: DataTypes.INTEGER
         }, {
             sequelize, 
         })

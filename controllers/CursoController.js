@@ -21,18 +21,18 @@ module.exports = {
 
 
     async store(req, res) {
-        const {nome, periodos} = req.body
-        const cursos = await Curso.create({nome, periodos})
+        const {nome, horas} = req.body
+        const cursos = await Curso.create({nome, horas})
         req.flash("success_msg", "Curso cadastrado com sucesso!")
         return res.redirect('/admin/curso')
     },
 
 
     async update(req, res) {
-        const { id, nome, periodos } = req.body;
+        const { id, nome, horas } = req.body;
 
         await Curso.update({
-            nome, periodos
+            nome, horas
         }, {
             where: { id }
         })
