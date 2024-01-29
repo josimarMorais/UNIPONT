@@ -8,34 +8,36 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       aluno_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'alunos',
-          key: 'id'
+          key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       },
       mensagem: {
         type: Sequelize.STRING(1000),
-        allowNull: false
+        allowNull: false,
       },
       status: {
         type: Sequelize.ENUM('Aberto', 'Fechado'),
-        allowNull: false,
         defaultValue: 'Aberto',
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       }
     });
   },

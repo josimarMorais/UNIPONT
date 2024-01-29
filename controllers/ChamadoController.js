@@ -24,7 +24,15 @@ const createAlunoChamado = async (req, res, next) => {
 
         // Cria o chamado no banco de dados
         console.log(AlunoChamado);
-        await AlunoChamado.create({ mensagem, aluno_id });
+        //Transformar mensagem em string
+        let teste1 = JSON.stringify(mensagem);
+        //Transformar aluno_id em integer
+        let teste2 = parseInt(aluno_id);
+
+        const chamadoTeste = new AlunoChamado({ mensagem: teste1, aluno_id: teste2, status: 'Aberto' });
+        console.log(chamadoTeste);
+
+        //await AlunoChamado.create({ mensagem, aluno_id });
 
     } catch (error) {
         console.log(error);

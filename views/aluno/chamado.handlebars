@@ -33,16 +33,18 @@
             nome: nome,
             mensagem: mensagem
         };
-        fetch("/aluno/chamado", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+        const res = await fetch("/aluno/chamado", {
+            method: 'POST',
+            body: JSON.stringify(mensagem),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (res.status === 201) {
+            const data = await res.json();
+            alert("Mensagem enviada com sucesso!");
+        } else {
+            const errorMessage = await res.text();
+            alert(`Erro: ${errorMessage}`);
+        }
+        
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-    });
 </script>

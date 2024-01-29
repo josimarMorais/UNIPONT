@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
 
-const { requireRole, checkUser } = require('../middleware/authMiddleware');
+const { requireRole } = require('../middleware/authMiddleware');
 const ControllerAluno = require('../controllers/aluno/ControllerAluno');
-const AlunoChamadoController = require('../controllers/AlunoChamadoController');
+const ChamadoController = require('../controllers/ChamadoController');
 
 router.get('/inicio', requireRole('aluno'), ControllerAluno.inicio);
 
 //Rotas de chamado
-router.post('/chamado', checkUser, requireRole('aluno'), AlunoChamadoController.createAlunoChamado);
+router.post('/chamado', requireRole('aluno'), ChamadoController.createAlunoChamado);
 router.get('/chamado', requireRole('aluno'), ControllerAluno.chamado);
 
 
