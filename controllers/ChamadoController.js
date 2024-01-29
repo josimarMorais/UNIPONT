@@ -5,11 +5,15 @@ const Aluno = require('../models/Aluno');
 // Cria um novo chamado de aluno
 const createAlunoChamado = async (req, res, next) => {
     try {
+
         // Recebe o corpo da requisição
         const userId = res.locals.user.id;
-        // Mostrar no terminal da IDE o res.local.user.id
-        console.log("userId: " + userId);
         const { mensagem } = req.body;
+
+        // Mostrar no terminal da IDE o res.local.user.id
+        console.log("MOSTRANDO O USERID: " + userId);
+
+        // Mostrar no terminal da IDE o a mensagem passada pelo aluno.
         console.log("Mensagem: " + mensagem);
 
         // Busca por Aluno com base na id de Usuário
@@ -22,20 +26,14 @@ const createAlunoChamado = async (req, res, next) => {
         const aluno_id = aluno.id;
         console.log("aluno_id: " + aluno_id);
 
-        // Cria o chamado no banco de dados
-        console.log(AlunoChamado);
-        //Transformar mensagem em string
-        let teste1 = JSON.stringify(mensagem);
-        //Transformar aluno_id em integer
-        let teste2 = parseInt(aluno_id);
+       const status = "Aberto";
 
-        const chamadoTeste = new AlunoChamado({ mensagem: teste1, aluno_id: teste2, status: 'Aberto' });
+        const chamadoTeste = await AlunoChamado.create({ aluno_id, mensagem, status });
+
         console.log(chamadoTeste);
 
         req.flash("success_msg", "Chamado cadastrado com sucesso!");
         return res.redirect('/aluno/inicio');
-
-        //await AlunoChamado.create({ mensagem, aluno_id });
 
     } catch (error) {
         console.log(error);
