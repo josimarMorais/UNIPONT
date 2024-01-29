@@ -1,4 +1,5 @@
 const Faleconosco = require('../models/Faleconosco')
+const AlunoChamado = require('../models/AlunoChamado')
 
 module.exports = {
     async index(req, res) {
@@ -6,8 +7,8 @@ module.exports = {
     },
 
     async admindex(req, res) {
-        const fales = await Faleconosco.findAll()
-        return res.render('admin/fale', {fales, layout: 'administrador'})
+        const chamados = await AlunoChamado.findAll()
+        return res.render('admin/fale', {chamados, layout: 'administrador'})
     },
 
     async store(req, res) {
@@ -19,7 +20,7 @@ module.exports = {
 
     async delete(req, res) {
         const { id } = req.body;
-        const fale = await Faleconosco.findByPk(id)
+        const fale = await AlunoChamado.findByPk(id)
         if(!fale){
             req.flash("error_msg", "Contato não encontrado")
             return res.redirect('/admin/faleadm')

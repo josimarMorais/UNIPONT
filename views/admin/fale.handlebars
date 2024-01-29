@@ -1,9 +1,8 @@
 <div class="sessao-adm">
 <h1>Contatos solicitados</h1>
-{{#each fales}}
+{{#each chamados}}
 <div class="recuo">
-    <h4>Nome: {{nome}}</h4>
-    <h4>E-mail: {{email}}</h4>
+    <h4>Status: {{status}}</h4>
     <p> Mesagem: {{mensagem}}</p>
     <form action="/admin/fale/delete" method="POST">
         <input type="hidden" name="id" value="{{id}}">
