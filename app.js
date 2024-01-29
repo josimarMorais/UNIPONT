@@ -34,6 +34,7 @@
     require('./database');
     const ComentarioController = require('./controllers/ComentarioController');
     const FaleconoscoController = require('./controllers/FaleconoscoController');
+    const VinculoController = require('./controllers/VinculoController');
 
 //Configurações dos módulos
     //Sessão
@@ -98,6 +99,8 @@
     app.post('/novocontato', FaleconoscoController.store)
     app.get('/fale', FaleconoscoController.index)
 
+    app.post('/novovinculo', VinculoController.store)
+    app.get('/vinc', VinculoController.index)
 
 //rotas da parte do administrador
     app.use('/admin', admin);

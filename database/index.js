@@ -7,6 +7,7 @@ const Curso       = require('../models/Curso')
 const Aluno       = require('../models/Aluno')
 const Materia     = require('../models/Materia')
 const Usuario     = require('../models/Usuario')
+const Vinculo     = require('../models/Vinculo')
 const UsuarioChamado = require('../models/AlunoChamado') 
 
 const  connection = new Sequelize(dbConfig)
@@ -17,11 +18,14 @@ Curso.init(connection)
 Aluno.init(connection)
 Materia.init(connection)
 Usuario.init(connection)
+Vinculo.init(connection)
 UsuarioChamado.init(connection)
+
 
 Aluno.associate(connection.models)
 Curso.associate(connection.models)
 Materia.associate(connection.models)
+Vinculo.associate(connection.models)
 
 //Verificando conexão com o bando de dados
 async function setupDatabaseConnection(){

@@ -7,6 +7,7 @@ const CursoController       = require('../controllers/CursoController')
 const ComentarioController  = require('../controllers/ComentarioController')
 const AlunoController       = require('../controllers/AlunoController')
 const MateriaController     = require('../controllers/MateriaController')
+const VinculoController     = require('../controllers/VinculoController')
 
 const { requireRole } = require('../middleware/authMiddleware')
 
@@ -49,6 +50,9 @@ router.post('/comentarios/delete', requireRole('admin'), ComentarioController.de
 router.get('/faleadm', requireRole('admin'), FaleconoscoController.admindex)
 router.post('/fale/delete', requireRole('admin'), FaleconoscoController.delete)
 
+//Rotas Vinculo
+router.get('/vinculoadm', requireRole('admin'), VinculoController.admindex)
+router.post('/vinculo/delete', requireRole('admin'), VinculoController.delete)
 
 module.exports = router
 
