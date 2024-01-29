@@ -1,4 +1,4 @@
-const AlunoChamado = require('../models/AlunoChamado').default;
+const AlunoChamado = require('../models/AlunoChamado');
 const Aluno = require('../models/Aluno');
 
 
@@ -23,7 +23,7 @@ const createAlunoChamado = async (req, res, next) => {
         console.log("aluno_id: " + aluno_id);
 
         // Cria o chamado no banco de dados
-        // Cria o chamado no banco de dados
+        console.log(AlunoChamado);
         await AlunoChamado.create({ mensagem, aluno_id });
 
     } catch (error) {
