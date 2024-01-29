@@ -53,5 +53,21 @@ module.exports = {
             req.flash("success_msg", "Curso apagado com sucesso!")
             return res.redirect('/admin/curso')
         }
+    },
+
+    // Retorna todos os cursos
+    async getAll(req, res) {
+        try {
+            const cursos = await Curso.findAll();
+            if (!cursos) {
+                return res.status(400).send('Nenhum curso encontrado');
+            } else {
+                return res.json(cursos);
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('Erro ao buscar cursos');
+        }
     }
+
 }

@@ -19,6 +19,9 @@
     const authRoutes = require('./routes/authRoutes');
     const { checkUser } = require('./middleware/authMiddleware');
 
+    //Importando as rotas de Cursos
+    const CursoRoutes = require('./routes/CursoRoutes');
+
     //Cookie Parser
     const cookieParser = require('cookie-parser');
 
@@ -70,6 +73,10 @@
         app.use(express.json());
 
 
+// MIDDLEWARE
+    app.use(cookieParser());
+    app.get('*', checkUser);
+ 
 
 
 //ROTAS
@@ -95,12 +102,6 @@
     app.post('/novovinculo', VinculoController.store)
     app.get('/vinc', VinculoController.index)
 
-    
- // MIDDLEWARE
- app.use(cookieParser());
- app.get('*', checkUser);
-
-
 //rotas da parte do administrador
     app.use('/admin', admin);
 
@@ -112,6 +113,9 @@
 
 // Rotas de Autenticação
     app.use('/auth', authRoutes);
+
+// Rotas de Cursos
+    app.use('/cursos', CursoRoutes);
 
 //OUTROS
     app.listen(PORT, () => {

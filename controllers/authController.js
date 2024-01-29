@@ -1,6 +1,7 @@
 //Implemenando as rotas de autenticação do arquivo authRoutes.js
 
 //Importando o model de Usuário
+const Aluno = require('../models/Aluno');
 const Usuario = require('../models/Usuario');
 
 //Importando JWT
@@ -46,6 +47,28 @@ module.exports.signup_post = async (req, res) => {
         res.status(400).send('Erro, não foi possível cadastrar o usuário');
     }
 };
+
+// Rotas de Signup de Aluno
+module.exports.signup_aluno_post = async (req, res) => {    
+    // Recebe os parametros de Usuario e do Aluno(matrícula e curso)
+    const { nome, email, senha, role, matricula, curso } = req.body;
+    try {
+        // Cria o usuário primeiro
+        const user = await Usuario.create({ nome, email, senha, role });
+        // Cria o aluno com a referência ao usuário
+        const aluno = await Aluno.create({ matricula, user_id: user.id, curso_id: curso });
+        // Por algum motivo o aluno não consegue salvar o id do usuário no campo usuario_id
+        // Então aqui eu forço a solução
+        aluno.usuario_id = user.id;
+        await aluno.save();
+        res.status(201).json({ user, aluno });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send('Erro, não foi possível cadastrar o usuário');
+    }
+}
+
+
 
 //Rotas de Login
 module.exports.login_get = (req, res) => {

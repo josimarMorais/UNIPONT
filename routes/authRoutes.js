@@ -18,6 +18,8 @@ router.get('/signup', authController.signup_get);
 
 router.post('/signup', authController.signup_post);
 
+router.post('/signup/aluno', authController.signup_aluno_post);
+
 //Login
 router.get('/login', requireLoggedOut, authController.login_post);
 

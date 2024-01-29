@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize')
 
 class Usuario extends Model {
     static init(sequelize) {
-        console.log("DEBUG: Iniciando o model de Usuários")
         super.init({
             id: {
                 type: DataTypes.INTEGER,
