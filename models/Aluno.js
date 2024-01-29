@@ -32,6 +32,9 @@ class Aluno extends Model {
         this.belongsTo(models.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
 
         this.belongsTo(models.Curso, { foreignKey: 'curso_id', as: 'curso'})
+
+        // Estava causando um erro, não sei se devo definir essa relação aqui também.
+        // this.hasMany(models.AlunoChamado, { foreignKey: 'aluno_id', as: 'aluno' });
     }
 }
 

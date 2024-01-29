@@ -33,10 +33,30 @@
             </div>
 
             <div class="form-group">
-            <option value="aluno">Aluno</option>
-            <option value="professor">Professor</option>
+            <option value="">Selecione um tipo de conta</option>
             <option value="admin">Administrador</option>
+            <option value="professor">Professor</option>
+            <option value="aluno">Aluno</option>
+            </select>
             </div>
+
+            <!-- Campos específicos para Aluno -->
+            <div id="alunoCampos" style="display: none;">
+                <div class="form-group">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" id="matricula" name="matricula" />
+                </div>
+                <div class="form-group">
+                    <label for="curso">Curso:</label>
+                    <select name="curso" id="curso">
+                        <option value="">Selecione um curso</option>
+                    </select>
+                    <!-- Preenche cada opção do Dropdown com os nomes dos Cursos existentes no Banco de Dados -->
+                </div>
+                <!-- Adicione mais se precisar -->
+            </div>
+
+            <!-- Caso precise de campos específicos para Professor, repita o código de Aluno acima e ajuste o script abaixo -->
 
             <div class="button">
                 <input  type="submit" value="Enviar">
@@ -49,10 +69,43 @@
 
 
 <script>
+    // Obtém a referência ao campo de seleção do curso
+    const cursoSelect = document.getElementById('curso');
+
+    // Adiciona um ouvinte de eventos ao carregar a página
+    document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Busca a lista de cursos do servidor
+        const response = await fetch('/cursos');
+        const cursos = await response.json();
+
+        // Preenche o menu dropdown com os cursos
+        cursos.forEach(curso => {
+        const option = document.createElement('option');
+        option.value = curso.id; // Use o ID do curso como valor
+        option.textContent = curso.nome; // Use o nome do curso como texto da opção
+        cursoSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error(error);
+    }
+    });
+
     // Script para o cadastro de um novo usuário,
     // pega os valores do form e envia para o servidor
     const form = document.querySelector('form');
     const mensagem = document.querySelector('#mensagem');
+
+    // Observe o valor do campo role e exibe ou oculta campos específicos
+    const roleSelect = document.getElementById('role');
+    const alunoCampos = document.getElementById('alunoCampos');
+    // const professorCampos = document.getElementById('professorCampos');
+
+    // Adiciona um ouvinte de eventos ao campo role
+    roleSelect.addEventListener('change', () => {
+        // Exibe ou oculta campos específicos com base na opção selecionada
+        alunoCampos.style.display = roleSelect.value === 'aluno' ? 'block' : 'none';
+    });
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -61,26 +114,53 @@
         const email = form.email.value;
         const senha = form.senha.value;
         const role = form.role.value;
-
-        try {
-            // envia os dados para o servidor
-            const res = await fetch('/auth/signup', {
-                method: 'POST',
-                body: JSON.stringify({ nome, email, senha, role }),
-                headers: { 'Content-Type': 'application/json' }
-            });
-            // Verifica se a resposta tem status 201 (Created)
-            if (res.status === 201) {
-                const data = await res.json();
-                mensagem.textContent = 'Usuário criado com sucesso!';
-                form.reset();
-            } else {
-                // Se a resposta não for 201, trata o erro
-                const errorMessage = await res.text();
-                mensagem.textContent = `Erro: ${errorMessage}`;
+        // Caso queira fazer o mesmo para outros tipos de conta, só 
+        // Verifica se o campo role é aluno, se for, pega o valor do campo matricula.
+        // Depois de verificar, envia os dados para o servidor
+        if (role === 'aluno') {
+            const matricula = form.matricula.value;
+            const curso = form.curso.value;
+            try {
+                // envia os dados para o servidor
+                const res = await fetch('/auth/signup/aluno', {
+                    method: 'POST',
+                    body: JSON.stringify({ nome, email, senha, role, matricula, curso }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                // Verifica se a resposta tem status 201 (Created)
+                if (res.status === 201) {
+                    const data = await res.json();
+                    mensagem.textContent = 'Usuário criado com sucesso!';
+                    form.reset();
+                } else {
+                    // Se a resposta não for 201, trata o erro
+                    const errorMessage = await res.text();
+                    mensagem.textContent = `Erro: ${errorMessage}`;
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
+        } else {
+            try {
+                // envia os dados para o servidor
+                const res = await fetch('/auth/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({ nome, email, senha, role }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                // Verifica se a resposta tem status 201 (Created)
+                if (res.status === 201) {
+                    const data = await res.json();
+                    mensagem.textContent = 'Usuário criado com sucesso!';
+                    form.reset();
+                } else {
+                    // Se a resposta não for 201, trata o erro
+                    const errorMessage = await res.text();
+                    mensagem.textContent = `Erro: ${errorMessage}`;
+                }
+            } catch (error) {
+                console.log(error);
+            }
         }
     })
 </script>
