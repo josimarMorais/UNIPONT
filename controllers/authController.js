@@ -11,11 +11,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '../.env' }); 
 
 //JWT
-const maxAge = 60;
-//3 * 24 * 60 * 60
+//Coloque aqui o tempo em segundo para a sessão do usuário expirar.
+const maxAge = 120;
 
 const createToken = (id, role) => {
-    return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: maxAge });
+    return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: maxAge * 1000});
 }
 
 
