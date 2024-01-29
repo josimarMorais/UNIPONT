@@ -1,0 +1,17 @@
+<div class="sessao-adm">
+<h1>Vínculos solicitados</h1>
+{{#each vincu}}
+<div class="recuo">
+    <h4>Professor: {{nome}}</h4>
+    <p> Email: {{email}}</p>
+    <p> Curso: {{curso.nome}}</p>
+    <form action="/admin/vinculo/delete" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit" class="delete"> Apagar solicitação de vínculo.</button>
+    </form>
+</div>
+<hr>
+{{else}}
+<h4 class="centralizar">Não há nenhuma solicitação!</h4>
+{{/each}}
+</div>
