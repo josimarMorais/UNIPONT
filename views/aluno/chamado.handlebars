@@ -1,0 +1,48 @@
+<div class="caixa3" id="fale">
+    <div class="sessao-fale">
+        <h1>Fale Conosco</h1>
+
+        <div class="conteudo-fale">
+            <form action="" name="myForm" class="main-form" method="POST">
+                <fieldset>
+                    <legend>Abrir Chamado</legend>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem: </label>
+                        <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Enviar">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Recebe o Id e nome do Usuário baseado no cookie jwt já presente no navegador
+    const id = getCookie("jwt").id;
+    const nome = getCookie("jwt").nome;
+
+    // Ao clicar no botão Enviar, recebe a mensagem
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const mensagem = document.getElementById("mensagem").value;
+        const data = {
+            id: id,
+            nome: nome,
+            mensagem: mensagem
+        };
+        fetch("/aluno/chamado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+    });
+</script>

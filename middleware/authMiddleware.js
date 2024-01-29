@@ -98,9 +98,15 @@ const checkUser = (req, res, next) => {
                 next();
             } else {
                 console.log(decodedToken);
-                let user = await Usuario.findByPk(decodedToken.id);
-                res.locals.user = user;
-                next();
+                try {
+                    let user = await Usuario.findByPk(decodedToken.id);
+                    res.locals.user = user;  // Armazena o usuário em res.locals
+                    next();
+                } catch (error) {
+                    console.log(error);
+                    res.locals.user = null;
+                    next();
+                }
             }
         });
     } else {
