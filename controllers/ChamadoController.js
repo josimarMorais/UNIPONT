@@ -32,6 +32,9 @@ const createAlunoChamado = async (req, res, next) => {
         const chamadoTeste = new AlunoChamado({ mensagem: teste1, aluno_id: teste2, status: 'Aberto' });
         console.log(chamadoTeste);
 
+        req.flash("success_msg", "Chamado cadastrado com sucesso!");
+        return res.redirect('/aluno/inicio');
+
         //await AlunoChamado.create({ mensagem, aluno_id });
 
     } catch (error) {

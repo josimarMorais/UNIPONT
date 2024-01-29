@@ -6,7 +6,8 @@ const Faleconosco = require('../models/Faleconosco')
 const Curso       = require('../models/Curso')
 const Aluno       = require('../models/Aluno')
 const Materia     = require('../models/Materia')
-const Usuario = require('../models/Usuario')
+const Usuario     = require('../models/Usuario')
+const UsuarioChamado = require('../models/AlunoChamado') 
 
 const  connection = new Sequelize(dbConfig)
 
@@ -16,6 +17,7 @@ Curso.init(connection)
 Aluno.init(connection)
 Materia.init(connection)
 Usuario.init(connection)
+UsuarioChamado.init(connection)
 
 Aluno.associate(connection.models)
 Curso.associate(connection.models)
